@@ -1,4 +1,4 @@
-package banco.modelo.excessoes;
+package br.banco.modelo.excessoes;
 
 public class SaldoInsuficienteException extends Exception {
 	

@@ -1,4 +1,4 @@
-package banco.ui;
+package br.banco.ui;
 
 public class InterfaceSwing {
 
