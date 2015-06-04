@@ -7,8 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import br.banco.modelo.Conta;
 import br.banco.modelo.ContaCorrente;
+import br.banco.modelo.excessoes.ContaJaCadastradaException;
+import br.banco.modelo.excessoes.ContaNaoEncontradaException;
 
 public class ConexaoBD implements IContasBancarias {
 	private static ConexaoBD conexao;
@@ -58,7 +62,7 @@ public class ConexaoBD implements IContasBancarias {
 			}	
 		return myList;
 	}
-	public int inserir(Conta conta){
+	public int inserir(Conta conta) throws ContaJaCadastradaException{ // retorna a chave do objeto inserido
 		Connection connection = null;
 		int idObj = 0;
 		try {
@@ -67,8 +71,10 @@ public class ConexaoBD implements IContasBancarias {
 										   PreparedStatement.RETURN_GENERATED_KEYS);
 			statement.setFloat(1,conta.getSaldo());
 			statement.setString(2, conta.getNomeCliente());
-			statement.execute();
+			int i = statement.executeUpdate();
 			ResultSet rs = statement.getGeneratedKeys();
+			 if(i == 0)
+				 throw new ContaJaCadastradaException("Conta já cadastrada no banco de dados!");
 			while(rs.next()){
 				idObj = rs.getInt(1);
 			}
@@ -112,13 +118,16 @@ public class ConexaoBD implements IContasBancarias {
 		
 		
 	}
-	public void deletar(int id){
+	public void deletar(int id) throws ContaNaoEncontradaException {
 		Connection connection = null;
 		try {
 			connection = getConnection();
 			PreparedStatement statement =  connection.prepareStatement("DELETE FROM Conta where CodC = ?");
 			statement.setInt(1, id);
-			statement.execute();
+			int i  = statement.executeUpdate();
+			if(i == 0)
+				throw new ContaNaoEncontradaException("Conta não cadastrada no banco de dados");
+		
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -132,5 +141,4 @@ public class ConexaoBD implements IContasBancarias {
 		}
 		
 	}
-	
 }
