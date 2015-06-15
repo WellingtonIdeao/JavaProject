@@ -12,16 +12,19 @@ public class ContaBancaria {
 	public ContaBancaria(IContasBancarias persistencia){
 		this.persistencia = persistencia;
 	}
-	public int cadastrarConta(Conta conta) throws ContaJaCadastradaException{
-		return this.persistencia.inserir(conta);
+	public void cadastrarConta(Conta conta) throws ContaJaCadastradaException{
+		this.persistencia.inserir(conta);
 	}
-	public void modificarConta(Conta conta){
+	public void modificarConta(Conta conta) throws ContaNaoEncontradaException{
 		this.persistencia.atualizar(conta);
 	}
 	public List<Conta> listarContas(){
 		return this.persistencia.listar();
 	}
-	public void excluirConta(int id) throws ContaNaoEncontradaException {
+	public void excluirConta(String id) throws ContaNaoEncontradaException {
 		this.persistencia.deletar(id);
+	}
+	public Conta buscarConta(String string) throws ContaNaoEncontradaException{
+		return this.persistencia.buscar(string);
 	}
 }

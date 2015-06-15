@@ -8,7 +8,7 @@ import br.banco.modelo.excessoes.ValorInvalidoException;
 public class ContaCorrenteTest extends TestCase {
 
 	public void testCreditar() {
-		ContaCorrente c1 = new ContaCorrente("joao");
+		ContaCorrente c1 = new ContaCorrente("joao","12345");
 		 			                                    // testando o saldo atual
 		try {
 			c1.creditar(100.00f);
@@ -19,12 +19,12 @@ public class ContaCorrenteTest extends TestCase {
 		} catch (ValorInvalidoException e) {
 			System.out.println(e);
 		}
-		assertEquals(260.00, c1.getSaldo()); 			// confirmando que não houve alteração após
+		assertEquals(260.00f, c1.getSaldo()); 			// confirmando que não houve alteração após
 	}													// a inserção dos valores negativos
 
 	 													
 	public void testDebitar() {
-		ContaCorrente c1 = new ContaCorrente("joao");
+		ContaCorrente c1 = new ContaCorrente("joao","12345");
 		try {
 			c1.creditar(100.00f);
 			c1.debitar(57.00f); // debitando...
@@ -38,5 +38,4 @@ public class ContaCorrenteTest extends TestCase {
 		assertEquals(43.00f, c1.getSaldo()); // confirmando que não houve
 											// modificação no saldo
 	}
-
 }

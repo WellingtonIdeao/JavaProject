@@ -7,8 +7,10 @@ import br.banco.modelo.excessoes.ContaJaCadastradaException;
 import br.banco.modelo.excessoes.ContaNaoEncontradaException;
 
 public interface IContasBancarias {
-  int inserir(Conta conta) throws ContaJaCadastradaException;
-  void atualizar(Conta conta);
+	
+  void inserir(Conta conta) throws ContaJaCadastradaException;
+  void atualizar(Conta conta) throws ContaNaoEncontradaException;
   List<Conta> listar();
-  void deletar(int id) throws ContaNaoEncontradaException ;
+  void deletar(String id) throws ContaNaoEncontradaException ;
+  Conta buscar(String id) throws ContaNaoEncontradaException ;
 }
