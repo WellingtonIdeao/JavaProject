@@ -92,7 +92,7 @@ public class SwingUI {
 			}
 
 			/**
-			 * MÈtodo que faz chamada aos principais componentes da minha tela.
+			 * M√©todo que faz chamada aos principais componentes da minha tela.
 			 */
 			private void mostraTela() {
 				
@@ -126,9 +126,9 @@ public class SwingUI {
 				btSobre.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						JOptionPane.showConfirmDialog(janela, "Criadores do Projeto Desembestado:\n"
-								+ "          JosÈ Welington Ide„o\n"
-								+ "          Kevin Mariz MacÍdo\n"
-								+ "   Vinicius Nascimentoda Silva", "Sobre", JOptionPane.CLOSED_OPTION);
+								+ "          Jos√© Welington Ide√£o\n"
+								+ "          Kevin Mariz Mac√™do\n"
+								+ "   Vinicius Nascimento da Silva", "Sobre", JOptionPane.CLOSED_OPTION);
 						
 					}
 				});
@@ -152,7 +152,7 @@ public class SwingUI {
 						janela.getContentPane().add(panelNorte, BorderLayout.NORTH);
 					}
 
-			//Botıes do Painel Principal
+			//Bot√µes do Painel Principal
 			private void mostrarBotoesOpcoes() {
 				JButton btcadastrar = new JButton(new ImageIcon("imagens/cadastro.png"));
 				JButton btalterar = new JButton(new ImageIcon("imagens/moneyIcon.png"));
@@ -189,9 +189,9 @@ public class SwingUI {
 				panelNorte.add(btrelatorio);
 				
 			}
-	//Janela RelatÛrio
+	//Janela Relat√≥rio
 			private void janelaRelatorio() {
-				janelaRelatorio = new JFrame("RelatÛrio");
+				janelaRelatorio = new JFrame("Relat√≥rio");
 				panelRelatorioNorte = new JPanel();
 				panelRelatorioCentro = new JPanel();
 				panelRelatorioSul = new JPanel();
@@ -202,7 +202,7 @@ public class SwingUI {
 				JTable jtableConta = new JTable(contaTableModel);
 				JScrollPane jscrollPane = new JScrollPane(jtableConta);
 				jscrollPane.setPreferredSize(new Dimension(300,200));
-				JButton btRelatorio = new JButton("Gerar RelatÛrio da Conta");
+				JButton btRelatorio = new JButton("Gerar Relat√≥rio da Conta");
 				btRelatorio.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try{
@@ -210,7 +210,7 @@ public class SwingUI {
 						Conta c = contaTableModel.getConta(select);
 						TipoRelatorio(c);
 						}catch(ArrayIndexOutOfBoundsException e1){
-							JOptionPane.showMessageDialog(frDebitar,"Conta n„o selecionada ", "Erro", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(frDebitar,"Conta n√£o selecionada ", "Erro", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 					});
@@ -259,7 +259,7 @@ public class SwingUI {
 			}
 
 			private void TipoRelatorio(Conta conta) {
-				opcRelatorio = new JFrame("Tipo de RelatÛrio");
+				opcRelatorio = new JFrame("Tipo de Relat√≥rio");
 				panelopcRelatorio = new JPanel();
 				
 				JButton btPDF = new JButton(new ImageIcon("Imagens/pdf.png"));
@@ -269,7 +269,7 @@ public class SwingUI {
 						pdf.criandoDocumento(conta);
 						opcRelatorio.dispose();
 						JOptionPane.showMessageDialog(frDebitar,"Relatorio em .pdf gerado com sucesso\n",
-								"RelatÛrio", JOptionPane.INFORMATION_MESSAGE);
+								"Relat√≥rio", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				
@@ -280,7 +280,7 @@ public class SwingUI {
 						opcRelatorio.dispose();
 						rc.gerarRelatorio(conta);
 						JOptionPane.showMessageDialog(frDebitar,"Relatorio em .txt gerado com sucesso\n",
-								"RelatÛrio", JOptionPane.INFORMATION_MESSAGE);
+								"Relat√≥rio", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				
@@ -401,7 +401,7 @@ public class SwingUI {
 						} catch (ContaNaoEncontradaException e1) {
 							JOptionPane.showMessageDialog(null, e1.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
 						}catch(NumberFormatException e1){
-							JOptionPane.showMessageDialog(null, "Formato n„o aceito", "Erro", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Formato n√£o aceito", "Erro", JOptionPane.INFORMATION_MESSAGE);
 						}
 							
 						numCreditarField.setText("");
@@ -452,7 +452,7 @@ public class SwingUI {
 						} catch (SaldoInsuficienteException e1) {
 							JOptionPane.showMessageDialog(frDebitar, e1.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
 						} catch(NumberFormatException e1){
-							JOptionPane.showMessageDialog(frDebitar, "Formato n„o aceito", "Erro", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(frDebitar, "Formato n√£o aceito", "Erro", JOptionPane.INFORMATION_MESSAGE);
 						}
 						numDebitarField.setText("");
 						valorDebitarField.setText("");
